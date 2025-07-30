@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import Icon from "@/components/ui/icon"
+import { Link } from "react-router-dom"
 
 const Index = () => {
   const currentTime = new Date().toLocaleTimeString('ru-RU', { 
@@ -88,105 +89,75 @@ const Index = () => {
           </Card>
 
           {/* Обо мне */}
-          <Card className="md:col-span-2 lg:col-span-1 xl:col-span-2 hover:scale-[1.02] transition-transform duration-200">
+          <Card className="hover:scale-105 transition-transform duration-200">
             <CardHeader className="pb-2">
               <CardDescription className="text-xs text-muted-foreground">about.ts</CardDescription>
             </CardHeader>
-            <CardContent className="flex items-start gap-4">
+            <CardContent className="text-center">
               <img 
                 src="/img/a7c2acbe-8d73-4015-80e2-003292047749.jpg" 
                 alt="Avatar" 
-                className="w-16 h-16 rounded-full object-cover"
+                className="w-12 h-12 rounded-full object-cover mx-auto mb-2"
               />
-              <div className="flex-1">
-                <h2 className="text-xl font-bold mb-2">Backend & Embedded Developer</h2>
-                <p className="text-sm text-muted-foreground mb-3">
-                  Специализируюсь на разработке высокопроизводительных систем, 
-                  встроенного ПО и backend-решений. Опыт работы с IoT, системами реального времени.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">
-                    <Icon name="Cpu" size={12} className="mr-1" />
-                    Embedded
-                  </Badge>
-                  <Badge variant="secondary">
-                    <Icon name="Server" size={12} className="mr-1" />
-                    Backend
-                  </Badge>
-                  <Badge variant="secondary">
-                    <Icon name="Database" size={12} className="mr-1" />
-                    DevOps
-                  </Badge>
-                </div>
+              <h2 className="text-sm font-bold mb-1">Backend & Embedded</h2>
+              <div className="flex flex-wrap gap-1 justify-center">
+                <Badge variant="secondary" className="text-xs">Embedded</Badge>
+                <Badge variant="secondary" className="text-xs">Backend</Badge>
               </div>
             </CardContent>
           </Card>
 
           {/* Навыки */}
-          <Card className="lg:col-span-2 hover:scale-[1.02] transition-transform duration-200">
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Icon name="Code2" size={20} />
-                Языки программирования
-              </CardTitle>
-              <CardDescription className="text-xs">skills.md</CardDescription>
+          <Card className="hover:scale-105 transition-transform duration-200">
+            <CardHeader className="pb-2">
+              <CardDescription className="text-xs text-muted-foreground">skills.md</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {skills.map((skill) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium">{skill.name}</span>
-                      <span className="text-xs text-muted-foreground">{skill.level}%</span>
-                    </div>
-                    <Progress value={skill.level} className="h-2" />
+              <div className="flex items-center gap-2 mb-3">
+                <Icon name="Code2" size={16} />
+                <span className="text-sm font-semibold">Навыки</span>
+              </div>
+              <div className="space-y-2">
+                {skills.slice(0, 3).map((skill) => (
+                  <div key={skill.name} className="flex justify-between items-center text-xs">
+                    <span>{skill.name}</span>
+                    <span className="text-muted-foreground">{skill.level}%</span>
                   </div>
                 ))}
               </div>
-              <Button variant="outline" size="sm" className="w-full mt-4">
-                <Icon name="Eye" size={14} className="mr-2" />
-                Просмотреть все навыки
-              </Button>
+              <Link to="/skills">
+                <Button variant="outline" size="sm" className="w-full mt-3">
+                  <Icon name="Eye" size={12} className="mr-1" />
+                  Все навыки
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
           {/* Проекты */}
-          <Card className="xl:col-span-2 hover:scale-[1.02] transition-transform duration-200">
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Icon name="Folder" size={20} />
-                Проекты
-              </CardTitle>
-              <CardDescription className="text-xs">projects.json</CardDescription>
+          <Card className="hover:scale-105 transition-transform duration-200">
+            <CardHeader className="pb-2">
+              <CardDescription className="text-xs text-muted-foreground">projects.json</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {projects.map((project, index) => (
-                  <div key={index} className="border-l-2 border-muted pl-4">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-semibold text-sm">{project.title}</h3>
-                      <Badge 
-                        variant={project.status === 'Завершён' ? 'default' : 'secondary'}
-                        className="text-xs"
-                      >
-                        {project.status}
-                      </Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-2">{project.description}</p>
-                    <div className="flex flex-wrap gap-1">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+              <div className="flex items-center gap-2 mb-3">
+                <Icon name="Folder" size={16} />
+                <span className="text-sm font-semibold">Проекты</span>
               </div>
-              <Button variant="outline" size="sm" className="w-full mt-4">
-                <Icon name="ExternalLink" size={14} className="mr-2" />
-                Просмотреть все проекты
-              </Button>
+              <div className="text-xs text-muted-foreground mb-3">
+                {projects.length} активных проектов
+              </div>
+              <div className="flex flex-wrap gap-1 mb-3">
+                <Badge variant="outline" className="text-xs">Rust</Badge>
+                <Badge variant="outline" className="text-xs">C/C++</Badge>
+                <Badge variant="outline" className="text-xs">Go</Badge>
+              </div>
+              <Link to="/projects">
+                <Button variant="outline" size="sm" className="w-full">
+                  <Icon name="ExternalLink" size={12} className="mr-1" />
+                  Все проекты
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
