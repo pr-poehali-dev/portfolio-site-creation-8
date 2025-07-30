@@ -93,38 +93,38 @@ const Index = () => {
             <CardHeader className="pb-2">
               <CardDescription className="text-xs text-muted-foreground">about.ts</CardDescription>
             </CardHeader>
-            <CardContent className="text-center py-6">
+            <CardContent className="text-center py-4">
               <img 
                 src="/img/a7c2acbe-8d73-4015-80e2-003292047749.jpg" 
                 alt="Avatar" 
-                className="w-20 h-20 rounded-full object-cover mx-auto mb-4"
+                className="w-16 h-16 rounded-full object-cover mx-auto mb-3"
               />
-              <h2 className="text-xl font-bold mb-2">
+              
+              <h2 className="text-lg font-bold mb-2">
                 Привет! Я <span className="text-blue-400">@DevExpert</span>
               </h2>
               
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="flex items-center gap-2 bg-secondary/50 px-3 py-1 rounded-md">
-                  <Icon name="Code2" size={16} />
-                  <span className="text-sm">C/C++</span>
-                </div>
-                <div className="flex items-center gap-2 bg-secondary/50 px-3 py-1 rounded-md">
-                  <Icon name="Triangle" size={16} />
-                  <span className="text-sm">Rust</span>
-                </div>
-                <div className="flex items-center gap-2 bg-secondary/50 px-3 py-1 rounded-md">
-                  <Icon name="Zap" size={16} />
-                  <span className="text-sm">Embedded</span>
-                </div>
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Badge variant="outline" className="text-xs">
+                  <Icon name="Code2" size={12} className="mr-1" />
+                  C/C++
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  <Icon name="Triangle" size={12} className="mr-1" />
+                  Rust  
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  <Icon name="Cpu" size={12} className="mr-1" />
+                  Embedded
+                </Badge>
               </div>
 
-              <p className="text-sm text-muted-foreground mb-3 max-w-md mx-auto">
-                Мне 28 лет. Занимаюсь Backend и Embedded разработкой. 
-                Создаю высокопроизводительные системы и IoT решения.
+              <p className="text-sm text-muted-foreground mb-2">
+                Backend & Embedded разработчик. Создаю IoT системы.
               </p>
               
-              <p className="text-sm text-muted-foreground">
-                Нужен Backend или Embedded разработчик? — Свяжитесь со мной!
+              <p className="text-xs text-muted-foreground">
+                Нужен разработчик? — Свяжитесь со мной!
               </p>
             </CardContent>
           </Card>
