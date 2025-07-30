@@ -130,54 +130,72 @@ const Index = () => {
           </Card>
 
           {/* Навыки */}
-          <Card className="hover:scale-105 transition-transform duration-200">
-            <CardHeader className="pb-2">
-              <CardDescription className="text-xs text-muted-foreground">skills.md</CardDescription>
+          <Card className="lg:col-span-2 hover:scale-[1.02] transition-transform duration-200">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Icon name="Code2" size={20} />
+                Технические навыки
+              </CardTitle>
+              <CardDescription className="text-xs">skills.md</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-2 mb-3">
-                <Icon name="Code2" size={16} />
-                <span className="text-sm font-semibold">Навыки</span>
-              </div>
-              <div className="space-y-2">
-                {skills.slice(0, 3).map((skill) => (
-                  <div key={skill.name} className="flex justify-between items-center text-xs">
-                    <span>{skill.name}</span>
-                    <span className="text-muted-foreground">{skill.level}%</span>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                {skills.slice(0, 6).map((skill) => (
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-medium">{skill.name}</span>
+                      <span className="text-xs text-muted-foreground">{skill.level}%</span>
+                    </div>
+                    <Progress value={skill.level} className="h-2" />
                   </div>
                 ))}
               </div>
               <Link to="/skills">
-                <Button variant="outline" size="sm" className="w-full mt-3">
-                  <Icon name="Eye" size={12} className="mr-1" />
-                  Все навыки
+                <Button variant="outline" size="sm" className="w-full">
+                  <Icon name="Eye" size={14} className="mr-2" />
+                  Просмотреть все навыки
                 </Button>
               </Link>
             </CardContent>
           </Card>
 
           {/* Проекты */}
-          <Card className="hover:scale-105 transition-transform duration-200">
-            <CardHeader className="pb-2">
-              <CardDescription className="text-xs text-muted-foreground">projects.json</CardDescription>
+          <Card className="xl:col-span-2 hover:scale-[1.02] transition-transform duration-200">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Icon name="Folder" size={20} />
+                Последние проекты
+              </CardTitle>
+              <CardDescription className="text-xs">projects.json</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-2 mb-3">
-                <Icon name="Folder" size={16} />
-                <span className="text-sm font-semibold">Проекты</span>
-              </div>
-              <div className="text-xs text-muted-foreground mb-3">
-                {projects.length} активных проектов
-              </div>
-              <div className="flex flex-wrap gap-1 mb-3">
-                <Badge variant="outline" className="text-xs">Rust</Badge>
-                <Badge variant="outline" className="text-xs">C/C++</Badge>
-                <Badge variant="outline" className="text-xs">Go</Badge>
+              <div className="space-y-4 mb-4">
+                {projects.slice(0, 2).map((project, index) => (
+                  <div key={index} className="border-l-2 border-primary/20 pl-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="font-semibold text-sm">{project.title}</h3>
+                      <Badge 
+                        variant={project.status === 'Завершён' ? 'default' : 'secondary'}
+                        className="text-xs"
+                      >
+                        {project.status}
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-2 line-clamp-2">{project.description}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {project.tech.slice(0, 3).map((tech) => (
+                        <Badge key={tech} variant="outline" className="text-xs">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
               <Link to="/projects">
                 <Button variant="outline" size="sm" className="w-full">
-                  <Icon name="ExternalLink" size={12} className="mr-1" />
-                  Все проекты
+                  <Icon name="ExternalLink" size={14} className="mr-2" />
+                  Просмотреть все проекты
                 </Button>
               </Link>
             </CardContent>
